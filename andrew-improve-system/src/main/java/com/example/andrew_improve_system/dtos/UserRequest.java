@@ -1,24 +1,11 @@
-package com.example.andrew_improve_system.entities;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+package com.example.andrew_improve_system.dtos;
+
+import com.example.andrew_improve_system.entities.Role;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+public class UserRequest {
 
-
-
-
-//Step 1:
-//Create a user entity
-
-
-@Entity
-public class User{
-
-
-    @Id
-    @GeneratedValue
     private Long id;
     @Size(max = 50)
     @NotNull
@@ -37,20 +24,20 @@ public class User{
     @NotNull
     private Role role;
 
-    public String getUserName(){
+    public Long getId() {
+        return id;
+    }
+
+    public String getUserName() {
         return userName;
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email;
     }
 
     public String getPassword() {
         return password;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getFirstName() {
@@ -73,24 +60,24 @@ public class User{
         this.id = id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public void setLastName(String lastName) {
         LastName = lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public void setProfilePicture(String profilePicture) {
@@ -101,6 +88,3 @@ public class User{
         this.role = role;
     }
 }
-
-
-
