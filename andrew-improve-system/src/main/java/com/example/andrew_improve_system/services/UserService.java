@@ -1,30 +1,23 @@
 package com.example.andrew_improve_system.services;
 
 import com.example.andrew_improve_system.dtos.UserRequest;
-import com.example.andrew_improve_system.entities.Role;
 import com.example.andrew_improve_system.entities.User;
 import com.example.andrew_improve_system.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service  // THIS IS CRITICAL
 public class UserService {
 
-    private final UserRepository userRepository;
-    public UserService(UserRepository userRepository){
-        this.userRepository = userRepository;
-    }
+    @Autowired
+    private UserRepository userRepository;
 
-    public User createUser(UserRequest userRequest){
+    public User createUser(UserRequest userRequest) {
+        System.out.println("UserService.createUser called with: " + userRequest.getUserName());
         User user = new User();
-        user.setId(userRequest.getId());
         user.setUserName(userRequest.getUserName());
-        user.setEmail(userRequest.getEmail());
-        user.setPassword(userRequest.getPassword());
-        user.setFirstName(userRequest.getFirstName());
-        user.setLastName(userRequest.getLastName());
-        user.setProfilePicture(userRequest.getProfilePicture());
-        user.setRole(Role.USER);
-
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        System.out.println("User saved with ID: " + savedUser.getId());
+        return savedUser;
     }
 }

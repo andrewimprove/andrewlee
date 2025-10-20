@@ -1,29 +1,21 @@
 package com.example.andrew_improve_system.controllers;
+
 import com.example.andrew_improve_system.dtos.UserRequest;
+import com.example.andrew_improve_system.entities.User;
 import com.example.andrew_improve_system.services.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
-
+    @Autowired
     private UserService userService;
 
-    private UserRequest userRequest;
-    //Create User
     @PostMapping("/save")
-    public void createUser(@RequestBody UserRequest userRequest){
-
+    public User createUser(@RequestBody UserRequest userRequest) {
+        System.out.println("Save endpoint hit with: " + userRequest.getUserName());
+        return userService.createUser(userRequest);
     }
-
-    //Read user
-
-    //Update User
-
-    //Delete User
-
 }
