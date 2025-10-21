@@ -15,7 +15,6 @@ public class UserController {
 
     @PostMapping("/save")
     public User createUser(@RequestBody UserRequest userRequest) {
-        System.out.println("Save endpoint hit with: " + userRequest.getUserName());
         return userService.createUser(userRequest);
     }
 }
